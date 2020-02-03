@@ -1,0 +1,11 @@
+{
+    "name": "java-crash-course",
+    "version": "1.0.0",
+    "dependencies": {
+        "reveal-md": "davidovich/reveal-md.git"
+    },
+    "scripts": {
+        "start": "reveal-md slides.md -w --theme beige --css css/custom.css,css/bootstrap.css",
+        "livereload": "0.8.2"
+    }
+}
