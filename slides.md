@@ -37,6 +37,8 @@ Part 3
 
 * http://mortengoodwin.net/Public/DAT113/
 
+* This is a **crash-course** in **java**. You are expected to **ask questions** if you dont fully understand a concept
+
 </div>
 
 </div>
@@ -88,11 +90,143 @@ public class Main {
 https://www.javatpoint.com/java-variables
 
 ---
+- What is variable? <!-- .element: class="fragment"  -->
+- Name of reserved area allocated in memory <!-- .element: class="fragment"  style="color:red"-->
+
+![](https://static.javatpoint.com/core/images/variable.png) <!-- .element: class="fragment"  -->
+
+Example: <!-- .element: class="fragment"  -->  
+```java
+int data = 50; // We store 50 in memory with the variable name 'data'
+```  
+<!-- .element: class="fragment"  -->  
+
+---
+
+### Types of variables
+
+- Local variable
+- Instance variable
+- Static Variable
+
+---
+
+![](https://i.imgur.com/Lzp7Mxa.png)
+
+---
+
+### Code Example
+```java
+class A {
+    int variableInstance = 42; // I'm a INSTANCE variable
+    static int variableStatic = 99; // I'm a STATIC variable
+
+    public void getSomething(){
+        int variableA = 10; // I'm a LOCAL variable
+    }
+    
+}
+
+class B {
+
+    public void getACompletlyDifferentThing(){
+    
+        int variableInstance = 19; // I'm a LOCAL variable
+        
+        // We access the STATIC variable from class A.
+        variableInstance = variableInstance + A.variableStatic; 
+
+    }
+}
+```
+
+
+---
+
+### To Summarize
+
+
+<div class="fragment">
+
+**Local Variable:** <!-- .element: class="left-align "  -->
+- A variable declared **inside the body** of the method is called **local variable**. You can use this variable only within **that method** and the other methods in the class aren't even **aware** that the variable exists.
+
+</div>
+
+<div class="fragment">
+
+**Instance Variable:** <!-- .element: class="left-align "  -->
+- A variable declared **inside the class** but outside the body of the method, is called instance variable. It is **not declared as static**.
+- It is called instance variable because its value is instance specific and is **not shared among instances**.
+- Example: The value of a speedometer in a car is **only stored** in that specific car "instance"
+- More on this when we touch upon classes
+</div>
+
+---
+
+### To Summarize
+
+**Static Variable:** <!-- .element: class="left-align "  -->
+- It cannot be local. You can create a **single copy** of static variable and **share** among all the instances of the class. Memory allocation for static variable **happens only once** when the class is loaded in the memory.
+
+---
 
 ### Primitives
 https://www.javatpoint.com/java-data-types
+
+![](https://static.javatpoint.com/images/java-data-types.png)
+
+---
+
+### Primitives
+
+| Data Type | Default Value | Default size |
+|-----------|---------------|--------------|
+| boolean   | false         | 1 bit        |
+| char      | '\u0000'      | 2 byte       |
+| byte      | 0             | 1 byte       |
+| short     | 0             | 2 byte       |
+| int       | 0             | 4 byte       |
+| long      | 0L            | 8 byte       |
+| float     | 0.0f          | 4 byte       |
+| double    | 0.0d          | 8 byte       |
+
+
+**Important to get right when working with numbers**
 
 ---
 
 ### If Statements
 https://www.javatpoint.com/java-if-else
+
+![](https://static.javatpoint.com/images/core/if1.png)
+
+---
+
+### If Statements
+
+```java
+//Java Program to demonstate the use of if statement.  
+public class IfExample {  
+public static void main(String[] args) {  
+    //defining an 'age' variable  
+    int age=20;  
+    //checking the age  
+    if(age>18){  
+        System.out.print("Age is greater than 18");  
+    }  
+}  
+}  
+```
+Output:
+
+    - Age is greater than 18
+
+---
+
+# Part 2
+
+Loops, Strings and Arrays
+---
+
+

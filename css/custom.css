@@ -1,4 +1,8 @@
 .left-align{
     text-align: left;
+    float: left;
 }
 
+.reveal pre code {
+    max-height: 100%;
+}
