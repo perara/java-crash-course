@@ -1,3 +1,5 @@
+package a1;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -15,7 +17,8 @@ public class UTXOPool {
     }
 
     /** Creates a new UTXOPool that is a copy of {@code uPool} */
-    public UTXOPool(UTXOPool uPool) {
+    public UTXOPool(UTXOPool uPool)
+    {
         H = new HashMap<UTXO, Transaction.Output>(uPool.H);
     }
 
@@ -26,6 +29,7 @@ public class UTXOPool {
 
     /** Removes the UTXO {@code utxo} from the pool */
     public void removeUTXO(UTXO utxo) {
+
         H.remove(utxo);
     }
 

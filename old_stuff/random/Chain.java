@@ -1,4 +1,4 @@
-import java.security.Signature;
+package random;
 
 public class Chain {
     int iteration;

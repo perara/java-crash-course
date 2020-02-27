@@ -1,3 +1,5 @@
+package a2;
+
 public class Candidate {
 	Transaction tx;
 	int sender;
