@@ -13,19 +13,19 @@ public class Wallet {
     ArrayList<PublicKey> allPublicKeys;
 
     public Wallet(String name, ArrayList<PublicKey> allPublicKeys){
+        // Name of the wallet holder
         this.name = name;
+
+        // Variable to keep track of the private and public  key of the wallet
         this.keys = this.generateKeys();
+
+        // The global list of public keys (other wallets)
         this.allPublicKeys = allPublicKeys;
 
+        // Add public key of this wallet to the global list of public keys
         this.allPublicKeys.add(this.keys.getPublic());
     }
 
-    /*
-    Cheat function!
-     */
-    public void giveCoins(double amount){
-        this.coins += amount;
-    }
 
     public byte[] signTransaction(Transaction tx){
 
@@ -34,32 +34,49 @@ public class Wallet {
 
         // Add transaction data and digitally sign the transaction
 
-        //byte[] signBytes = sign.
-
         return this._signTransaction(sign, tx);
 
     }
 
-    public void verifyTransaction(byte[] txBytes, byte[] signedTx) {
 
+    public void verifyTransaction(byte[] txBytes, byte[] signedTx) {
+        /*
+        This function verifies a transaction by checking if a signature is valid<
+         */
+
+        // Iterate through all public keys
         for (PublicKey pubKey: this.allPublicKeys) {
 
+            // Create a new instance of the Signature class
             Signature sign = this.createSignature();
+
+            // Initialize a boolean that defaults to false
             boolean isOK = false;
-            // Add the signed TX to a new signature instance
+
+
             try {
+                // Initialize the signature with the public key
                 sign.initVerify(pubKey);
+
+                // Add the transaction bytes (the message) to the signature
                 sign.update(txBytes);
+
+                // Verify that the message was signed by the private key corresponding to the public key
                 isOK = sign.verify(signedTx);
+
+
             } catch (InvalidKeyException | SignatureException e) {
+                // Something wrong happened
                 e.printStackTrace();
             }
 
             if(isOK) {
                 System.out.println("The transaction was verified.");
 
+                // Deserialize bytes to the Transaction class
                 Transaction tx = this.deserialize(txBytes);
 
+                // Print out some stats
                 System.out.println(tx.id + " - " + tx.amount);
 
 
@@ -74,11 +91,17 @@ public class Wallet {
     }
 
     // Internal function, signs the transaction hash
-    private byte[] _signTransaction(Signature sign ,Transaction tx){
+    private byte[] _signTransaction(Signature sign, Transaction tx){
+        // Initialize empty signature buffer
         byte[] signed = null;
         try {
+
+            // Serialize the transaction to a byte array then update the signautre
             sign.update(this.serialize(tx));
+
+            // Sign the message (the transaction) with the private key
             signed = sign.sign();
+
         } catch (SignatureException e) {
             e.printStackTrace();
         }
@@ -86,9 +109,13 @@ public class Wallet {
     }
 
     public Signature createSignature(){
+        // Initialize empty signature variable
         Signature signature = null;
         try {
+            // Create signature instance
             signature = Signature.getInstance("SHA1withRSA");
+
+            // Initialize signature with the private key
             signature.initSign(keys.getPrivate());
         } catch (NoSuchAlgorithmException | InvalidKeyException e) {
             e.printStackTrace();
